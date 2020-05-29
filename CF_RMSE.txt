@@ -1,0 +1,5 @@
+Hillary Clinton: 0.5522510670701709
+Legalization Of Abortion : 0.5331497433356325
+Donald Trump: 0.5650221021958131
+Feminist Movement: 0.5945623930664001
+Climate Change: 0.4773055675253303
