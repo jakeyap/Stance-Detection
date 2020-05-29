@@ -15,10 +15,10 @@ import argparse
 
 parser = argparse.ArgumentParser(description="downloads tweets")
 parser.add_argument('--out_tweet', dest='out_tweet', default=None, type=argparse.FileType('a'), required=True)
-#parser.add_argument('--out_usr', dest='out_usr', default=None, type=argparse.FileType('w'), required=True)
+
 args = parser.parse_args()
 
-# Command to Run: python crawler.py --partial_tweet=A.txt --partial_usr=B.txt --out_tweet=A-out.txt --out_usr=B-out.txt
+
 # python crawler.py --out_tweet=TOPIC-out.txt 
 
 
@@ -39,14 +39,6 @@ oauth_token, oauth_secret = read_token_file(MY_TWITTER_CREDS)
 tobj = Twitter(auth=OAuth(oauth_token, oauth_secret, CONSUMER_KEY, CONSUMER_SECRET))
 
 
-#searchresult = tobj.search.tweets(q = "Donald Trump", count = COUNTS)
-#statuses = searchresult
-
-#print(json.dumps(statuses, indent = 4))
-#user_id = statuses[0]["user"]["id"]
-#usr_searchResult= tobj.followers.ids(user_id=124816474)
-# followers = usr_searchResult["ids"]
-# print(followers)
 
 class Tweet():
     
@@ -60,43 +52,7 @@ class Tweet():
     def tolist(self):
         return [str(self.tweet_id), str(self.user_id),str(self.usr_followers_cnt), str(self.text), str(self.user_name)]
 
-# =============================================================================
-# class User():
-#     
-#     def __init__(self, uid, fllow_cnts):
-#         self.uid  = uid
-#         self.following_cnts = fllow_cnts
-#         self.followers= []
-# #        self.following_by_cnts = fllowBy_cnts
-#     
-#     def setFollowers(self,f):
-#         self.followers.extend(f)
-# #        self.followed_by = fby
-#         
-#     def cvtFollowers(self):
-#         l = [str(f) for f in self.followers]
-#         self.followers_str = ",".join(l)
-#         
-#     def tolist(self):
-#         return [str(self.uid), str(self.following_cnts), self.followers_str]
-# =============================================================================
 
-# =======================================================================================
-
-# =============================================================================
-# def loadPartialResults():
-#     
-#     if args.partial_tweet != None:
-#         
-#         for line in args.partial_tweet:
-#             fields = line.strip().split(DELIMITER)
-#             
-#             tweet_id = fields[0]
-#             usr_id = fields[1]
-#             
-#             tweet_id_set.add(tweet_id)
-#             usr_id_set.add(usr_id)
-# =============================================================================
             
 def query_topics():
     
@@ -169,37 +125,6 @@ def retrieveTweets(topic):
             busyWaiting(e.e.code, "t")
 
 
-# =============================================================================
-# def retrieveFollowers(usrObj): #Imcompleted Function
-#     print("Retrieving Followers")
-#     cursor = 1
-#     usr_id = usrObj["id"] # the Check for usr_id_set is done in retrievetweets already
-#     user = User(usr_id, usrObj["followers_count"])
-#     
-#     while True:
-#         try:
-#             if(cursor == 1):
-#                 follower_SR = tobj.followers.ids(user_id = usr_id, count=USR_COUNT)
-#                 
-#             elif(cursor == 0):
-#                 break
-#             else:
-#                 follower_SR = tobj.followers.ids(user_id = usr_id, cursor = cursor)
-#                 
-#             user.setFollowers(follower_SR["ids"])
-#             cursor = follower_SR["next_cursor"]
-#             print(cursor)
-#             user.cvtFollowers()
-#         except TwitterError as e:
-#             print("Followers - BusyWaiting")
-#             print(cursor)
-#             if(cursor == 0):
-#               break
-#             else:
-#               busyWaiting(e.e.code, "f")
-#     return user
-# 
-# =============================================================================
 
 def writeToFile(obj, flag):
     if flag == "t":
@@ -239,7 +164,7 @@ def annotatedCrawl(file):
     f.close()
 
 
-# ===============================================================illary_Clinton_annot.txt"==============
+# ===============================================================Hillary_Clinton_annot.txt"==============
 # query_topics()
 # if(len(topics) > 1):
 #     num = int(2000/len(topics))

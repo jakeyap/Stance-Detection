@@ -21,7 +21,9 @@ def gatherUsersTweets(users, keywords, maxtweets):
 
 def convertIDtoUsername(user_id):
     r = requests.get('https://twitter.com/intent/user?user_id=' + user_id)
+    #print(r.content.decode('utf-8'))
     user_search=re.search('<title>.*\(@(.*)\).*</title>', r.content.decode('utf-8'), re.IGNORECASE)
+    #print(user_search.group(1))
     if(user_search):
         username = user_search.group(1)            
         return username

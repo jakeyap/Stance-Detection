@@ -9,6 +9,9 @@ Created on Fri Feb  7 09:21:26 2020
 
 @author: lweiren
 """
+from os.path import abspath, dirname
+d = dirname(abspath(__file__))
+
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -27,8 +30,9 @@ model_classes = {
 state_dict_paths = {
     'lcf_bert': 'state_dict/lcf_bert_laptop_val_acc0.2492',
     'bert_spc': 'state_dict/bert_spc_laptop_val_acc0.268',
-    'aen_bert': 'state_dict/aen_bert_twitter_val_acc0.7312'
+    'aen_bert':  d+ '/state_dict/aen_bert_twitter_val_acc0.7312'
 }
+
 
 class Parameter():
 

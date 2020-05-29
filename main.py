@@ -8,11 +8,12 @@ Created on Tue Mar 17 14:31:28 2020
 import os
 
 current_path = os.getcwd()
+print(current_path)
 
 import sys
-sys.path.insert(1, current_path+"TSA/")
-sys.path.insert(1, current_path+"TSA/ABSAPyTorch/")
-sys.path.insert(1, current_path+"crawling/")
+sys.path.insert(1, current_path+"/TSA/")
+sys.path.insert(1, current_path+"/TSA/ABSAPyTorch/")
+sys.path.insert(1, current_path+"/crawling/")
 
 import time
 
@@ -102,7 +103,7 @@ def main():
             
         elif choice == 3:
             
-            
+            df = pd.read_csv(file5)
             maxtweets = 500
             usernames = []
             l =[]

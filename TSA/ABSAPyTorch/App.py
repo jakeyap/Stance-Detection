@@ -5,7 +5,7 @@ Created on Fri Feb  7 10:59:34 2020
 
 @author: lweiren
 """
-from os import abspath, dirname
+from os.path import abspath, dirname
 d = dirname(dirname(dirname(abspath(__file__))))
 
 
@@ -32,7 +32,7 @@ L_POLARITY_THRES = -0.2
 H_POLARITY_THRES = 0.2
 
 nlp = spacy.load("en_core_web_sm")
-neuralcoref.add_to_pipe(nlp)
+#neuralcoref.add_to_pipe(nlp)
 
 def loadFile(topic, file):
     tweets= []

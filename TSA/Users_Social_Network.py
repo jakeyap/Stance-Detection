@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-from os import abspath, dirname
+from os.path import abspath, dirname
 d = dirname(dirname(abspath(__file__)))
 
 
