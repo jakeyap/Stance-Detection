@@ -2,13 +2,21 @@
 
 ## Requirements
 python == 3.7.6
+
 fastai == 1.0.57
+
 torch == 1.4.0
+
 spacy == 2.1.8
+
 nltk == 3.4.5
+
 GetOldTweets3 == 0.0.11
+
 twint == 2.8.0
+
 python-twitter == 1.18.0
+
 tweet-preprocessor == 0.5.0
 
 
