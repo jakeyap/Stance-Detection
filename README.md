@@ -34,17 +34,14 @@ E.g. python crawler.py --out_tweet= /home/user/Stance-Detection/Annotated_data/D
 1. Run "python main.py"
 2. Enter Choice: 1
 3. Fill in the prompts
-
+```sh
 E.g. 
-
 Topic? Donald Trump
-
 Dataset Filepath? "/home/lweiren/Stance-Detection/Annotated_data/Donald_Trump_annot-out.txt"
-
 Save(d) to which directory? "/home/lweiren/Stance-Detection/test
+```
 
-
-Note: Please ensure that the pretrained aen_bert_twitter_val_acc0.7312 model exists in /home/<user>/Stance-Detection/TSA/ABSAPyTorch/state_dict/ before running Choice 1.
+Note: Please ensure that the pretrained aen_bert_twitter_val_acc0.7312 model exists in /home/user/Stance-Detection/TSA/ABSAPyTorch/state_dict/ before running Choice 1.
 
 Note: The pretrained BERT model file exceeded 100MB file size limit in which GitHub allows. Thus, it will not be uploaded into GitHub. Link of model:  
 
@@ -54,23 +51,18 @@ Note: The pretrained BERT model file exceeded 100MB file size limit in which Git
 2. Enter Choice: 3
 
 3. Fill in the prompts
-
+```sh
 E.g.
-
 Topic? Donald Trump
-
 Dataset Filepath? /home/user/Stance-Detection/Annotated_data/Donald_Trump_annot-out.txt
-
 Save(d) to which directory? /home/user/Stance-Detection/test 
+```
 
+Note: Please ensure that Choice 1 was run previously and its output files exist in /home/user/Stance-Detection/test before running Choice 3.
 
-Note: Please ensure that Choice 1 was run previously and its output files exist in "/home/<usr>/Stance-Detection/<dir>"  before running Choice 3.
+Note: Please ensure that the pretrained aen_bert_twitter_val_acc0.7312 model exists in /home/user/Stance-Detection/TSA/ABSAPyTorch/state_dict/ before running Choice 3.
 
-Note: Please ensure that the pretrained aen_bert_twitter_val_acc0.7312 model exists in /home/<user>/Stance-Detection/TSA/ABSAPyTorch/state_dict/ before running Choice 3.
-
-Note: If User_IDs are constantly not found, it is probably caused by the browser: We've detected that JavaScript is disabled in your browser. Would you like to proceed to legacy Twitter?
-
-This page intercepts the proper user's Twitter page which caused regex search to fail in finding the username. This is not a frequent bug during testing in April 2020-May 2020.
+Note: If User_IDs are constantly not found, it is probably caused by the browser: We've detected that JavaScript is disabled in your browser. Would you like to proceed to legacy Twitter? This page intercepts the proper user's Twitter page which caused regex search to fail in finding the username. This is not a frequent bug during testing in April 2020-May 2020.
 
 ## Running Collaborative Filtering
 1. Run "python main.py"
@@ -78,17 +70,13 @@ This page intercepts the proper user's Twitter page which caused regex search to
 2. Enter Choice: 4
 
 3. Fill in the prompts
-
-
+```sh
 E.g.
-
 Topic? Donald Trump
-
 Dataset Filepath? /home/<usr>/Stance-Detection/Annotated_data/Donald_Trump_annot-out.txt
-
 Save(d) to which directory? /home/user/Stance-Detection/test 
+```
 
-
-Note: Please ensure that Choice 1 & 3 was run previously and its output files exists in "/home/<usr>/Stance-Detection/<dir>"  before running Choice 4.
+Note: Please ensure that Choice 1 & 3 was run previously and its output files exists in /home/user/Stance-Detection/test before running Choice 4.
 
 Note: If "Runtime Error" occurs due to Rank0Tensors, please repeat Step 1 - 3 without running Choice 1 or 3. The torch model in running TSA is probably affecting the CF torch model's train/evaluation mode.  
