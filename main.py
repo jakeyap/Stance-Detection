@@ -17,7 +17,7 @@ sys.path.insert(1, current_path+"/crawling/")
 
 import time
 
-from getOldTweets import gatherUsersTweets, convertIDtoUsername, convertTweet
+from getOldTweets import gatherUsersTweets, convertTweet
 from Users_Social_Network import getFollowers, generateGraph, runningCL
 from TSA_result import runTSASummary
 from App import getTweets
@@ -107,17 +107,33 @@ def main():
             df = pd.read_csv(file5)
             maxtweets = 500
             usernames = []
-            l =[]
+            l = []
+            ID_usrname_set = set()
+            ID_usrname_dict = dict()
+            
+            with open(file4, "r") as file:
+                
+                for line in file.readlines():
+                    field = line.split("|")
+                    if field[1] not in ID_usrname_set:
+                        ID_usrname_set.add(field[1])
+                        ID_usrname_dict.update({field[1] : field[4]})
+            
+            
             for user_id in df.User_ID.unique():
-                username = convertIDtoUsername(str(user_id))
+                username = ID_usrname_dict[str(user_id)]
                 if username:
+                    print("Username: {}".format(username))
                     usernames.append(username)
                     try:
                         l.extend(gatherUsersTweets(username,keywords[topic], maxtweets))
                     except:
-                        print("Debug: Sleeping for 10 mins for cooldown")
+                        print("Debug: Sleeping for 2 mins for cooldown")
                         time.sleep(120)
                         l.extend(gatherUsersTweets(username,keywords[topic], maxtweets))
+                else:
+                    print("ID {} not found.".format(user_id))
+            
             
             with open(file7,'w') as file:
                 for t in l:

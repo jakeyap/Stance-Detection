@@ -101,7 +101,6 @@ Note: Please ensure that Choice 1 was run previously and its output files exist 
 
 Note: Please ensure that the pretrained aen_bert_twitter_val_acc0.7312 model exists in /home/user/Stance-Detection/TSA/ABSAPyTorch/state_dict/ before running Choice 3.
 
-Note: If User_IDs are constantly not found, it is probably caused by the browser: We've detected that JavaScript is disabled in your browser. Would you like to proceed to legacy Twitter? This page intercepts the proper user's Twitter page which caused regex search to fail in finding the username. This is not a frequent bug during testing in April 2020-May 2020.
 
 ### Description
 This Choice crawls more tweets for the sampled users which also contains the semeval keywords. As GetOldTweets3 is used, the user_ID was not available. Thus, user_IDs will be retrieved. TSA is then run on these new tweets and the results are concatenated with Topic_tweets.csv and Topic_polarity.csv. 

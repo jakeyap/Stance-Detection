@@ -19,17 +19,17 @@ def gatherUsersTweets(users, keywords, maxtweets):
     
     return tweets
 
-def convertIDtoUsername(user_id):
-    r = requests.get('https://twitter.com/intent/user?user_id=' + user_id)
-    #print(r.content.decode('utf-8'))
-    user_search=re.search('<title>.*\(@(.*)\).*</title>', r.content.decode('utf-8'), re.IGNORECASE)
-    #print(user_search.group(1))
-    if(user_search):
-        username = user_search.group(1)            
-        return username
-    else:
-        print("ID %s not found" % user_id)
-        return None
+# ==================================Obsolete since 29/05/2020===========================================
+# def convertIDtoUsername(user_id):
+#     r = requests.get('https://twitter.com/intent/user?user_id=' + user_id)
+#     user_search=re.search('<title>.*\(@(.*)\).*</title>', r.content.decode('utf-8'), re.IGNORECASE)
+#     if(user_search):
+#         username = user_search.group(1)            
+#         return username
+#     else:
+#         print("ID %s not found" % user_id)
+#         return None
+# =============================================================================
 def convertTweet(tweet):
     return "|".join([str(tweet.id), str(tweet.author_id), "-1", tweet.text, tweet.username]) + "\n"
 
