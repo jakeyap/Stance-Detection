@@ -128,8 +128,8 @@ def main():
                     try:
                         l.extend(gatherUsersTweets(username,keywords[topic], maxtweets))
                     except:
-                        print("Debug: Sleeping for 2 mins for cooldown")
-                        time.sleep(120)
+                        print("Debug: Sleeping for 10 mins for cooldown")
+                        time.sleep(600)
                         l.extend(gatherUsersTweets(username,keywords[topic], maxtweets))
                 else:
                     print("ID {} not found.".format(user_id))
