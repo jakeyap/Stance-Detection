@@ -71,11 +71,12 @@ def main():
         
         file7 = directory +"/"+ topic + "_user_tweets"
         file8 = directory +"/"+topic+ "_tweets_CF.csv"
-        file9 = directory + "/" + topic +"_polarity_CF.csv"
+        file9 = directory + "/" + topic +"_tweet_ave_CF.csv"
+        file10 = directory + "/" + topic +"_polarity.csv"
         
-        file10 = directory + "/" + topic +"_edgelist.csv"
-        file11 = directory + "/" + topic +"_Adjacency_List.csv"
-        file12 = directory + "/" + topic +"_features.csv"
+        file11 = directory + "/" + topic +"_edgelist.csv"
+        file12 = directory + "/" + topic +"_Adjacency_List.csv"
+        file13 = directory + "/" + topic +"_features.csv"
 
             
         if choice == 1:
@@ -83,7 +84,7 @@ def main():
           
             base_nouns = runTSASummary(topic,file1, file2, file3,file4)
             getFollowers(file3,file1 , file5)
-            generateGraph(file5,file1, file3,topic, file10, file11, file12)
+            generateGraph(file5,file1, file3,topic, file11, file12, file13)
             
         
         elif choice == 2:
@@ -140,9 +141,33 @@ def main():
             df_file1.to_csv(file8) #file1 copy
             df_t.to_csv(file9) #file2 copy
             
+            df_t["Polarity"] = "Positive"
+            df_t.loc[df_t["Mean_Polarity"]< 0, "Polarity"] = "Negative"
+            rank_df_col = ["Base Noun", "Frequency (based on tweets)", "Polarity Positive(%)", "Polarity Negative (%)", "User_ID"]
+            
+            data = []
+            
+            for noun in base_nouns:
+                df = df_t[df_t["Targets"] == noun]
+                users = df.User_ID
+                pos_neg_groups = df.groupby(["Targets", "Polarity"]).Polarity.count()
+                
+                levels = [pos_neg_groups.index.levels[0].values, ["Positive", "Negative"]]
+                new_index = pd.MultiIndex.from_product(levels, names=pos_neg_groups.index.names)
+                pos_neg_groups = pos_neg_groups.reindex(new_index, fill_value = 0)
+                
+                pos_neg_counts = pos_neg_groups.tolist()
+                freq = pos_neg_counts[0]+pos_neg_counts[1]
+                pos_neg_counts.append(freq)
+                for u in users:
+                    data.append([noun, freq, pos_neg_counts[0]/freq*100, pos_neg_counts[1]/freq*100, u])
+            
+            df_pos_neg = pd.DataFrame(data, columns=rank_df_col)
+            df_pos_neg.to_csv(file10, index = False)
+            
         
         elif choice == 4:
-            runningCL(file5,file1,file3,topic)
+            runningCL(file5,file8,file10,topic)
         elif choice == 5:
             break
         else:

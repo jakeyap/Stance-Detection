@@ -87,7 +87,7 @@ def getFollowers(f1,f2,dest):
     del df["User_ID"]
     df = df.drop_duplicates()
     print(df)
-    df = df.sort_values(by=["Frequency (based on tweets)"], ascending=False).head(20) # SHould I do a Gini Index?????
+    df = df.sort_values(by=["Frequency (based on tweets)"], ascending=False).head(20)
     
     common_targets = set([tar for tar in df["Base Noun"]])
     
@@ -160,8 +160,8 @@ def getFollowers(f1,f2,dest):
 
 def runningCL(dest,file1, file2,topic):
     
-    df_bn = pd.read_csv(file2)
-    df = df_bn.copy()
+    df_bn = pd.read_csv(file2) #_polarity
+    df = df_bn.copy() # polarity
     del df["User_ID"]
     df = df.drop_duplicates()
    
@@ -170,10 +170,10 @@ def runningCL(dest,file1, file2,topic):
     
     common_targets = set([tar for tar in df["Base Noun"]])
     
-    df_1 = pd.read_csv(file1)
+    df_1 = pd.read_csv(file1) # _tweet.csv
     #print(df_1)
-    df_f = pd.read_csv(dest)
-    df_f2 = df_f.copy()
+    df_f = pd.read_csv(dest) # Followers.csv
+    df_f2 = df_f.copy() # Followers.csv
     
     df_r = pd.merge(df_f, df_f2, how= "inner", on = ["1st_Neighbour"])
     df_rs = df_r.loc[df_r.User_ID_x != df_r.User_ID_y]
