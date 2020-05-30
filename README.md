@@ -128,7 +128,7 @@ TSA results:
 ```sh
 E.g.
 Topic? Donald Trump
-Dataset Filepath? /home/<usr>/Stance-Detection/Annotated_data/Donald_Trump_annot-out.txt
+Dataset Filepath? /home/user/Stance-Detection/Annotated_data/Donald_Trump_annot-out.txt
 Save(d) to which directory? /home/user/Stance-Detection/test 
 ```
 
@@ -137,13 +137,13 @@ Note: Please ensure that Choice 1 & 3 was run previously and its output files ex
 Note: If "Runtime Error" occurs due to Rank0Tensors, please repeat Step 1 - 3 without running Choice 1 or 3. The torch model in running TSA is probably affecting the CF torch model's train/evaluation mode.
 
 ### Description
-This Choice runs Collaborative Filtering using fastai's collab learner model. First, the top 20 most frequent base nouns are resampled (derived from Topic_polarity_CF.csv) and users in Topic_tweets_CF.csv is resampled according to the new top 20 base nouns. The polarity scores of the base nouns are then averaged based on the newly sampled users (Derived from Topic_tweet_CF.csv which stores polarity scores at a tweet level). This are then feed into the CF model to work on a user level. This processed dataset is splitted into a test set (20%) and training set (80%). The CF model is then train for 5 epochs. The model is then evaluated using Root Mean Square Error where evaluation is done at user level. 
+This Choice runs Collaborative Filtering using fastai's collab learner model. First, the top 20 most frequent base nouns are resampled (derived from Topic_polarity_CF.csv). Users from Topic_tweets_CF.csv are also resampled according to the new top 20 base nouns. The polarity scores of the base nouns are then averaged based on the newly sampled users. This is then feeded into the CF model to work on a user level. The processed dataset is splitted into a test set (20%) and training set (80%). The CF model is then trained for 5 epochs and then evaluated using Root Mean Square Error (evaluation is done at user level). 
 
 
 ```sh
 Output Files:
 <Topic>_train_collab.csv: Training set for CF Model
 <Topic>_test_collab.csv: Test set for CF Model
-<topic>_total_model.pth: CF model
+<Topic>_total_model.pth: CF model
 RSME score is printed in terminal.
 ```
