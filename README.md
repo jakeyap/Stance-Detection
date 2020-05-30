@@ -39,9 +39,9 @@ python crawler.py --out-tweet= <output-filepath>
 E.g. python crawler.py --out_tweet= /home/user/Stance-Detection/Annotated_data/Donald_Trump_annot-out.txt
 
 ### Description
-These instructions crawls the missing user information we need: User_ID, Username, Follower Counts.
+These instructions crawls the missing user information we need: ```sh User_ID ```, ```sh Username ```, ```sh Follower Counts ```.
 
-annontated_complied.txt contains the Semeval2016 dataset. In annotated_complied.txt, only Tweet_IDs, Topic, Tweet content, Stance, Target, Sentiment is available. The tweets that are in this textfile were crawled using the Semeval keywords.
+```sh annontated_complied.txt```  contains the Semeval2016 dataset. In annotated_complied.txt, only ```sh Tweet_IDs ```, ```sh Topic ```, ```sh Tweet content ```, ```sh Stance ```, ```sh Target ```, ```sh Sentiment ``` are available. The tweets that are in this textfile were crawled using the Semeval keywords.
  
 These intructions will first crawl the user information, and then organise the tweets into different topics. Please do this before running Choice 1.
 
@@ -62,14 +62,14 @@ Save(d) to which directory? "/home/lweiren/Stance-Detection/test
 ```sh
 awk -F, '{print $1,$2;}' Topic_polarity.csv | uniq | sort -k2,2gr > Topic_Ranklist.txt
 ```
-Note: Please ensure that the pretrained aen_bert_twitter_val_acc0.7312 model exists in /home/user/Stance-Detection/TSA/ABSAPyTorch/state_dict/ before running Choice 1.
+Note: Please ensure that the pretrained ```sh aen_bert_twitter_val_acc0.7312 model ``` exists in /home/user/Stance-Detection/TSA/ABSAPyTorch/state_dict/ before running Choice 1.
 
 Note: The pretrained BERT model file exceeded 100MB file size limit in which GitHub allows. Thus, it will not be uploaded into GitHub. Link of model:  https://drive.google.com/open?id=19tc-blUFAhc5JcNlc6sq8YSfYoKBD5q0
 
 ### Description
-This Choice will run targeted sentiment analysis on each tweet. After that, the ranking of targets is done (line 90 -92, /TSA/Users_Social_Network.py) by extracting out the top 20 most frequency base nouns mentioned in terms of number of tweets. Using this ranking of targets, it will sample informative users and fetch their follower IDs. Lastly, it will construct the adjacency list of the sampled users.
+This Choice will run targeted sentiment analysis on each tweet. After that, the ranking of targets is done ```sh (line 90 -92, /TSA/Users_Social_Network.py) ``` by extracting out the top 20 most frequency base nouns mentioned in terms of number of tweets. Using this ranking of targets, it will sample informative users and fetch their follower IDs. Lastly, it will construct the adjacency list of the sampled users.
 
-```s
+```sh
 Output Files:
 
 TSA results:
@@ -97,9 +97,9 @@ Dataset Filepath? /home/user/Stance-Detection/Annotated_data/Donald_Trump_annot-
 Save(d) to which directory? /home/user/Stance-Detection/test 
 ```
 
-Note: Please ensure that Choice 1 was run previously and its output files exist in /home/user/Stance-Detection/test before running Choice 3.
+Note: Please ensure that Choice 1 was run previously and its output files exist in ```sh /home/user/Stance-Detection/test ``` before running Choice 3.
 
-Note: Please ensure that the pretrained aen_bert_twitter_val_acc0.7312 model exists in /home/user/Stance-Detection/TSA/ABSAPyTorch/state_dict/ before running Choice 3.
+Note: Please ensure that the pretrained ```sh aen_bert_twitter_val_acc0.7312 ``` model exists in ```sh /home/user/Stance-Detection/TSA/ABSAPyTorch/state_dict/ ``` before running Choice 3.
 
 
 ### Description
@@ -109,7 +109,6 @@ This Choice crawls more tweets for the sampled users which also contains the sem
 Output Files:
 
 Crawled_Data:
-
 <Topic>_additional_tweets.txt: Addtional tweets crawled
 
 TSA results:
@@ -131,12 +130,12 @@ Dataset Filepath? /home/user/Stance-Detection/Annotated_data/Donald_Trump_annot-
 Save(d) to which directory? /home/user/Stance-Detection/test 
 ```
 
-Note: Please ensure that Choice 1 & 3 was run previously and its output files exists in /home/user/Stance-Detection/test before running Choice 4.
+Note: Please ensure that Choice 1 & 3 was run previously and its output files exists in ```sh /home/user/Stance-Detection/test ``` before running Choice 4.
 
-Note: If "Runtime Error" occurs due to Rank0Tensors, please repeat Step 1 - 3 without running Choice 1 or 3. The torch model in running TSA is probably affecting the CF torch model's train/evaluation mode.
+Note: If ```sh Runtime Error ``` occurs due to ```sh Rank0Tensors ```, please repeat Step 1 - 3 without running Choice 1 or 3. The torch model in running TSA is probably affecting the CF torch model's training/evaluation mode.
 
 ### Description
-This Choice runs Collaborative Filtering using fastai's collab learner model. First, the top 20 most frequent base nouns are resampled (derived from Topic_polarity_CF.csv). Users from Topic_tweets_CF.csv are also resampled according to the new top 20 base nouns. The polarity scores of the base nouns are then averaged based on the newly sampled users. This is then feeded into the CF model to work on a user level. The processed dataset is splitted into a test set (20%) and training set (80%). The CF model is then trained for 5 epochs and then evaluated using Root Mean Square Error (evaluation is done at user level). 
+This Choice runs Collaborative Filtering using fastai's collab learner model. First, the top 20 most frequent base nouns are resampled ```sh (derived from Topic_polarity_CF.csv) ``` . Users from ```sh Topic_tweets_CF.csv ``` are also resampled according to the new top 20 base nouns. The polarity scores of the base nouns are then averaged based on the newly sampled users. This is then feeded into the CF model to work on a user level. The processed dataset is splitted into a test set (20%) and training set (80%). The CF model is then trained for 5 epochs and then evaluated using Root Mean Square Error (evaluation is done at user level). 
 
 
 ```sh
