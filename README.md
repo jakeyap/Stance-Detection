@@ -97,9 +97,9 @@ Dataset Filepath? /home/user/Stance-Detection/Annotated_data/Donald_Trump_annot-
 Save(d) to which directory? /home/user/Stance-Detection/test 
 ```
 
-Note: Please ensure that Choice 1 was run previously and its output files exist in ```sh /home/user/Stance-Detection/test ``` before running Choice 3.
+Note: Please ensure that Choice 1 was run previously and its output files exist in ``` /home/user/Stance-Detection/test ``` before running Choice 3.
 
-Note: Please ensure that the pretrained ```sh aen_bert_twitter_val_acc0.7312 ``` model exists in ```sh /home/user/Stance-Detection/TSA/ABSAPyTorch/state_dict/ ``` before running Choice 3.
+Note: Please ensure that the pretrained ``` aen_bert_twitter_val_acc0.7312 ``` model exists in ``` /home/user/Stance-Detection/TSA/ABSAPyTorch/state_dict/ ``` before running Choice 3.
 
 
 ### Description
