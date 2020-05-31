@@ -4,7 +4,11 @@
 
 The objective of this work is to use social network information to augment the data of Semeval Task. The objective of the semeval task is stance analysis: given a topic (e.g. Donald Trump), we infer the users were supportive or against the topic by using sentiment analysis and the social network information. 
 
-To achieve this objective, user information were crawled using the tweets from Semeval Dataset. Targeted Sentiment Analysis also used to classify each target of the tweets to be positive, negative, neutral. From this, we gathered targets which are most frequently mentioned and filtered off targets which are not polarised. In order to identify users which are much more informative, users were sampled based on the number of times he or she has mention the same target that has a high/low sentiment score and the number of different polarised targets he/she mention. In order to gather social information on those informative users, users with less than 5000 followers were crawled. Followers IDs that were retrieved were used to construct a shared neighbouring network, where each node represents the users and each weighted edge represents the number of followers the 2 users shared. A baseline Collaborative Filtering model is implemented and is evaluated using Root Mean Squared Error.
+To achieve this objective, user information were crawled using the tweets from Semeval Dataset. Targeted Sentiment Analysis also used to classify each target of the tweets to be positive, negative, neutral. From this, we gathered targets which are most frequently mentioned and filtered off targets which are not polarised. 
+
+In order to identify users which are much more informative, users were sampled based on the number of times he or she has mention the same target that has a high/low sentiment score and the number of different polarised targets he/she mention. In order to gather social information on those informative users, users with less than 5000 followers were crawled. 
+
+Followers IDs that were retrieved were used to construct a shared neighbouring network, where each node represents the users and each weighted edge represents the number of followers the 2 users shared. A baseline Collaborative Filtering model is implemented and is evaluated using Root Mean Squared Error.
 
 Semeval link: http://alt.qcri.org/semeval2016/task6/
 
