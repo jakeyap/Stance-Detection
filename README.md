@@ -1,5 +1,13 @@
 # Stance-Detection
 
+## Introduction
+
+The objective of this work is to use social network information to augment the data of Semeval Task (semeval link:http://alt.qcri.org/semeval2016/task6/). The objective of the semeval task is stance analysis: given a topic (e.g., Donald Trump). To achieve this, Targeted Sentiment Analysis (https://towardsdatascience.com/targeted-sentiment-analysis-vs-traditional-sentiment-analysis-4d9f2c12a476) is used to classify each target of the tweets to be positive/negative/neutral. From this, we gathered targets which are most frequently mentioned and filtered off targets which are not polarised. In order to identify users which are much more informative, users were sampled based on the number of times he or she has mention the same target that has a high/low sentiment score and the number of different polarised targets he/she mention. In order to gather social information on those informative users, users with less than 5000 followers were crawled. Followers IDs that were retrieved were used to construct a shared neighbouring network, where each node represents the users and each weighted edge represents the number of followers the 2 users shared. A baseline Collaborative Filtering model is implemented and is evaluated using Root Mean Squared Error.
+
+Link of AEN-Bert TSA Model Used: https://github.com/songyouwei/ABSA-PyTorch/
+
+
+
 ## Requirements
 python == 3.7.6
 
