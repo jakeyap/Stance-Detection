@@ -56,6 +56,8 @@ def main():
         print("Enter choice:")
         choice = int(input())
         
+        if choice == 5:
+          break
         
         topic , directory , data_fp = IOfiles()
         topic = "_".join(topic.split())
@@ -69,10 +71,10 @@ def main():
         file5 = directory+"/" +topic +"_Followers.csv"
         file6 = directory +"/"+ topic +"_Users.csv"
         
-        file7 = directory +"/"+ topic + "_user_tweets"
+        file7 = directory +"/"+ topic + "_additional_tweets"
         file8 = directory +"/"+topic+ "_tweets_CF.csv"
-        file9 = directory + "/" + topic +"_tweet_ave_CF.csv"
-        file10 = directory + "/" + topic +"_polarity.csv"
+        file9 = directory + "/" + topic +"_tweets_ave_CF.csv"
+        file10 = directory + "/" + topic +"_polarity_CF.csv"
         
         file11 = directory + "/" + topic +"_edgelist.csv"
         file12 = directory + "/" + topic +"_Adjacency_List.csv"
@@ -184,9 +186,8 @@ def main():
         
         elif choice == 4:
             runningCL(file5,file8,file10,topic)
-        elif choice == 5:
-            break
         else:
             print("Invalid Input entered : {}".format(choice))
 
 main()
+
